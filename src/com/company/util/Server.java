@@ -48,7 +48,7 @@ public class Server {
     public static Connections serverSetup() throws IOException {
        if (conn!=null) return conn;
         InetAddress address = InetAddress.getByName(host);
-        System.out.println(host);
+
         serverSocket = new ServerSocket(port,100,address);
         Socket socket = serverSocket.accept();
         DataInputStream inputStream = new DataInputStream(socket.getInputStream());

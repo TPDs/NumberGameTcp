@@ -4,30 +4,20 @@ import com.company.util.Connections;
 import com.company.util.Server;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class Main {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, InterruptedException {
+        Game game = new Game();
+        game.startGame();
         Connections connection = Server.serverSetup();
 
-        ArrayList<Integer> serverrolls = new ArrayList<>();
-        ArrayList<Integer> playerrolls = new ArrayList<>();
-        int total= 0;
-        String name = "Michael";
-        int serverScore = 10;
-        int serverRoll;
 
-        Roll diceroll = new Roll();
-        int myroll = diceroll.roll();
-        serverRoll=myroll;
-        serverrolls.add(myroll);
+
+
       //  User server = new User(name,serverScore,serverRoll);
 
-        for ( int i = 0; i < serverrolls.size();i++) {
-            total = total+serverrolls.get(i);
 
-        }
 /*
         Server startServer = new Server();
 
@@ -39,10 +29,10 @@ public class Main {
         System.out.println("--------------------------------------------------");
         System.out.println("PlayerName : " + battle.player.getName() + "\n Total Score: "+ battle.player.getScore() + "\n New Roll: " + battle.player.getDichroll() +"\n");
 */
-       //connection.getIn().readUTF();
-       //connection.getOut().writeUTF("hej");
+       connection.getIn().readUTF();
+       connection.getOut().writeUTF("hej");
 
-        System.out.println("det virker sku");
+
 
 
 
