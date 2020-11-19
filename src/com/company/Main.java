@@ -3,8 +3,6 @@ package com.company;
 import com.company.util.Connections;
 import com.company.util.Server;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -24,13 +22,13 @@ public class Main {
         int myroll = diceroll.roll();
         serverRoll=myroll;
         serverrolls.add(myroll);
-        User server = new User(name,serverScore,serverRoll);
+      //  User server = new User(name,serverScore,serverRoll);
 
         for ( int i = 0; i < serverrolls.size();i++) {
             total = total+serverrolls.get(i);
 
         }
-
+/*
         Server startServer = new Server();
 
         Battle battle;
@@ -40,9 +38,11 @@ public class Main {
         System.out.println("ServerName: " + battle.server.getName() + "\n Total: "+ battle.server.getScore() + "\n New Roll: " + battle.server.getDichroll());
         System.out.println("--------------------------------------------------");
         System.out.println("PlayerName : " + battle.player.getName() + "\n Total Score: "+ battle.player.getScore() + "\n New Roll: " + battle.player.getDichroll() +"\n");
+*/
+       //connection.getIn().readUTF();
+       //connection.getOut().writeUTF("hej");
 
-       connection.getIn().readUTF();
-       connection.getOut().writeUTF("hej");
+        System.out.println("det virker sku");
 
 
 
