@@ -9,8 +9,8 @@ import java.util.Scanner;
 
 public class Game {
 
-    ArrayList<Integer> player1Rolls = new ArrayList<>();
-    ArrayList<Integer> player2Rolls = new ArrayList<>();
+    ArrayList<User> player1Rolls = new ArrayList<>();
+    ArrayList<User> player2Rolls = new ArrayList<>();
     Connections connection;
 
     public void startGame() throws IOException {
@@ -29,7 +29,7 @@ public class Game {
                 " '----------------' '----------------' '----------------' '----------------'   '----------------' '----------------' \n" +
                 "\n" +
                 "\n" +
-                "By Michael Petersen & That guy");
+                "By Michael Petersen & Christian H");
 
         Scanner scanner = new Scanner(System.in);
         System.out.println("\n Type in player's name... \n");
@@ -39,6 +39,11 @@ public class Game {
         connection  = Server.serverSetup();
         String player2 = connection.getIn().readUTF();
         System.out.println(player2 + " has connected");
+        User user1 = new User(player1,0,0);
+        User user2 = new User(player2,0,0);
+        player1Rolls.add(user1);
+        player2Rolls.add(user2);
+
 
     }
 
