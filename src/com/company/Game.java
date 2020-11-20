@@ -14,25 +14,8 @@ public class Game {
     Connections connection;
 
     public void startGame() throws IOException {
-
-        System.out.println("\n" +
-                " .----------------. .----------------. .----------------. .----------------.   .----------------. .-----------------.\n"  +
-                "| .--------------. | .--------------. | .--------------. | .--------------. | | .--------------. | .--------------. |\n" +
-                "| |  ________    | | |     _____    | | |     ______   | | |  _________   | | | |     ____     | | | ____  _____  | |\n" +
-                "| | |_   ___ `.  | | |    |_   _|   | | |   .' ___  |  | | | |_   ___  |  | | | |   .'    `.   | | ||_   \\|_   _| | |\n" +
-                "| |   | |   `. \\ | | |      | |     | | |  / .'   \\_|  | | |   | |_  \\_|  | | | |  /  .--.  \\  | | |  |   \\ | |   | |\n" +
-                "| |   | |    | | | | |      | |     | | |  | |         | | |   |  _|  _   | | | |  | |    | |  | | |  | |\\ \\| |   | |\n" +
-                "| |  _| |___.' / | | |     _| |_    | | |  \\ `.___.'\\  | | |  _| |___/ |  | | | |  \\  `--'  /  | | | _| |_\\   |_  | |\n" +
-                "| | |________.'  | | |    |_____|   | | |   `._____.'  | | | |_________|  | | | |   `.____.'   | | ||_____|\\____| | |\n" +
-                "| |              | | |              | | |              | | |              | | | |              | | |              | |\n" +
-                "| '--------------' | '--------------' | '--------------' | '--------------' | | '--------------' | '--------------' |\n" +
-                " '----------------' '----------------' '----------------' '----------------'   '----------------' '----------------' \n" +
-                "\n" +
-                "\n" +
-                "By Michael Petersen & Christian H");
-
         Scanner scanner = new Scanner(System.in);
-        System.out.println("\n Type in player's name... \n");
+        System.out.println("\nType in player's name... \n");
         String player1 = scanner.next();
         System.out.println("Welcome " + player1 +"\n");
         System.out.println("\nWaiting on client to connect..");
@@ -43,8 +26,10 @@ public class Game {
         User user2 = new User(player2,0,0);
         player1Rolls.add(user1);
         player2Rolls.add(user2);
+    }
 
-
+    public void joinGame(){
+        //Metode for at joine et game
     }
 
 

@@ -60,7 +60,6 @@ public class Server {
         conn.setOut(outputStream);
         conn.setObjIn(objectInputStream);
         conn.setObjOut(objectOutputStream);
-
         return conn;
     }
 
