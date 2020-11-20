@@ -1,8 +1,6 @@
 package com.company.util;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.net.Socket;
 
 public class Connections {
@@ -15,14 +13,34 @@ public class Connections {
 
     DataInputStream in;
     DataOutputStream out;
+    ObjectOutputStream objOut;
+    ObjectInputStream objIn;
 
-    public Connections(Socket server, DataOutputStream out, DataInputStream in) throws IOException {
+    public Connections(Socket server, DataOutputStream out, DataInputStream in, ObjectOutputStream objOut, ObjectInputStream objIn) throws IOException {
         this.server = server;
         this.out=out;
         this.in = in;
+        this.objIn=objIn;
+        this.objOut=objOut;
     }
 
     public Connections() throws IOException {
+    }
+
+    public ObjectOutputStream getObjOut() {
+        return objOut;
+    }
+
+    public void setObjOut(ObjectOutputStream objOut) {
+        this.objOut = objOut;
+    }
+
+    public ObjectInputStream getObjIn() {
+        return objIn;
+    }
+
+    public void setObjIn(ObjectInputStream objIn) {
+        this.objIn = objIn;
     }
 
     public Socket getServer() {

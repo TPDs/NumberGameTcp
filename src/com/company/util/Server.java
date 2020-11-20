@@ -53,9 +53,13 @@ public class Server {
         Socket socket = serverSocket.accept();
         DataInputStream inputStream = new DataInputStream(socket.getInputStream());
         DataOutputStream outputStream = new DataOutputStream(socket.getOutputStream());
+        ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
+        ObjectInputStream objectInputStream = new ObjectInputStream(socket.getInputStream());
         conn.setServer(socket);
         conn.setIn(inputStream);
         conn.setOut(outputStream);
+        conn.setObjIn(objectInputStream);
+        conn.setObjOut(objectOutputStream);
 
         return conn;
     }
