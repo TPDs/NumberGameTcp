@@ -16,20 +16,6 @@ public class Client {
 
     Game game;
 
-    /*public Battle client(User user) throws IOException {
-
-        Socket client = new Socket(host, port);
-
-        DataOutputStream outputStream = new DataOutputStream(client.getOutputStream());
-        DataInputStream inputStream = new DataInputStream(client.getInputStream());
-
-        //User serverUser = new User(host, serverTotal, serverDice);
-        //Battle game = new Battle(serverUser, user);
-
-        client.close();
-        return game;
-    }*/
-
 
     // laves en conn til server socket via host og port med return
     public void clientSetup(String name) throws IOException, ClassNotFoundException {

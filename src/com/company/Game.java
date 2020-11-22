@@ -51,8 +51,6 @@ public class Game {
         System.out.println(roundInfo);
         game.setRoundInfo(roundInfo);
         return game;
-
-
     }
 
     public void clientRound(Socket client) throws IOException, ClassNotFoundException {
@@ -104,7 +102,6 @@ public class Game {
 
     }
 
-
     public void printScore(Battle game) {
         System.out.println("(*(*(*(*(*(*(*(*(*  " + game.getGameRound() + "   *)*)*)*)*)*)*)*)*)\n\n\n");
         System.out.println("ServerName: " + game.server.getName() + "\n Total: " + game.server.getScore() + "\n New Roll: " + game.server.getDichroll());
@@ -118,6 +115,5 @@ public class Game {
             System.out.println("The winner of the Ultimate Dice Game is " + user.getName());
         }
     }
-
 
 }

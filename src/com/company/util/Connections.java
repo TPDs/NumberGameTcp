@@ -76,7 +76,6 @@ public class Connections extends Thread {
 
     }
 
-
     public Connections() throws IOException {
     }
 
