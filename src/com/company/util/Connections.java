@@ -1,9 +1,14 @@
 package com.company.util;
 
+import com.company.Battle;
+import com.company.Game;
+import com.company.User;
+
 import java.io.*;
 import java.net.Socket;
+import java.util.Scanner;
 
-public class Connections {
+public class Connections extends Thread {
 
     Socket server;
 
@@ -15,14 +20,61 @@ public class Connections {
     DataOutputStream out;
     ObjectOutputStream objOut;
     ObjectInputStream objIn;
+    Game game;
 
-    public Connections(Socket server, DataOutputStream out, DataInputStream in, ObjectOutputStream objOut, ObjectInputStream objIn) throws IOException {
+    public Connections(Socket server, DataOutputStream out, DataInputStream in, ObjectOutputStream objOut,
+                       ObjectInputStream objIn) throws IOException {
         this.server = server;
-        this.out=out;
+        this.out = out;
         this.in = in;
-        this.objIn=objIn;
-        this.objOut=objOut;
+        this.objIn = objIn;
+        this.objOut = objOut;
     }
+
+    @Override
+    public void run() {
+        System.out.println("Thread made");
+        String player2;
+        try {
+            player2 = getIn().readUTF();
+            System.out.println(player2 + " has connected");
+            String player1 = "ServerMasterRace";
+            System.out.println("Welcome " + player1 + "\n");
+            User user1 = new User(player1, 0, 0);
+            User user2 = new User(player2, 0, 0);
+            Battle battleGame = new Battle(user1, user2);
+
+            while (user2.getScore() < 100 && user1.getScore() < 100) {
+                System.out.println("waiting for player2 roll");
+                user2.setDichroll(in.readInt());
+                game.gameRound(battleGame);
+                getOut().writeUTF(battleGame.getRoundInfo());
+                game.printScore(battleGame);
+            }
+            if (user1.getScore() > 100) {
+                game.winner(battleGame.getServer());
+                closeGame();
+                // Play again method?
+            } else
+                game.winner(battleGame.getPlayer());
+            closeGame();
+            // Play again method?
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
+    public void closeGame() throws IOException {
+        in.close();
+        out.close();
+        objOut.close();
+        objIn.close();
+        server.close();
+
+    }
+
 
     public Connections() throws IOException {
     }
