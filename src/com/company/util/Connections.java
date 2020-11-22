@@ -6,7 +6,6 @@ import com.company.User;
 
 import java.io.*;
 import java.net.Socket;
-import java.util.Scanner;
 
 public class Connections extends Thread {
 
@@ -48,7 +47,9 @@ public class Connections extends Thread {
                 System.out.println("waiting for player2 roll");
                 user2.setDichroll(in.readInt());
                 game.gameRound(battleGame);
-                getOut().writeUTF(battleGame.getRoundInfo());
+                battleGame.getPlayer().setDichroll(in.readInt());
+                //getOut().writeUTF(battleGame.getRoundInfo());
+                objOut.writeObject(battleGame);
                 game.printScore(battleGame);
             }
             if (user1.getScore() > 100) {

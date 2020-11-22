@@ -19,7 +19,7 @@ public class Game {
     }
 
     //Metode for at joine et game
-    public void joinGame() throws IOException {
+    public void joinGame() throws IOException, ClassNotFoundException {
         Client player2 = new Client();
         String name;
         Scanner scanner = new Scanner(System.in);
@@ -77,10 +77,13 @@ public class Game {
                 else System.out.println("Wrong input, try again");
             }
             if (clientRoll <= 2){
-                System.out.println("Wanna a try cheat? yes or no");
+                System.out.println("Wanna cheat? yes or no");
                 String cheat = scanner.nextLine();
                 switch (cheat) {
-                    case "yes" -> battlegame.getPlayer().setDichroll(6);
+                    case "yes" -> {
+                        battlegame.getPlayer().setDichroll(6);
+                        System.out.println("Roll changed to 6, Winner Winner Chicken dinner!");
+                    }
                     case "no" -> battlegame.getPlayer().setDichroll(clientRoll);
 
                 }
@@ -92,7 +95,12 @@ public class Game {
 
 
         }
+        if (battlegame.getServer().getScore()>=100) {
+            winner(battlegame.getServer());
 
+
+        }
+        else winner(battlegame.getPlayer());
 
     }
 
