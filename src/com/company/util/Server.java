@@ -9,8 +9,9 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Vector;
 
-public class Server extends Thread {
-    final static String host = "10.111.180.76";
+public class Server  {
+    // 192.168.1.6
+    final static String host = "192.168.1.6";
     final static int port = 5346;
     static Socket socket;
     static Vector<Connections> ar = new Vector<>();

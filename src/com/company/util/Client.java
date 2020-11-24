@@ -10,11 +10,11 @@ import com.company.User;
 
 public class Client {
 
-    final static String host = "10.111.180.76"; // Dagens lokal ip på skolen.. TJEK MIG!
+    final static String host = "192.168.1.6"; // Dagens lokal ip på skolen.. TJEK MIG!
     final static int port = 5346;
     public static Socket conn;
 
-    //Game game;
+    Game game;
 
 
     // laves en conn til server socket via host og port med return
@@ -22,6 +22,9 @@ public class Client {
         conn = new Socket(host, port);
         DataOutputStream out = new DataOutputStream(conn.getOutputStream());
         DataInputStream in = new DataInputStream(conn.getInputStream());
+        ObjectOutputStream objOut = new ObjectOutputStream(out);
+        objOut.writeObject("name");
+        objOut.flush();
         System.out.println(in.readUTF());
         out.writeUTF(name);
         Game game = new Game();
