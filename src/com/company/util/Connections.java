@@ -7,7 +7,7 @@ import com.company.User;
 import java.io.*;
 import java.net.Socket;
 
-public class Connections extends Thread {
+public class Connections implements Runnable {
 
     Socket server;
 

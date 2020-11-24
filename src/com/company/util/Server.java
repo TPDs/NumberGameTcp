@@ -7,18 +7,18 @@ import java.io.*;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.Vector;
 
 public class Server extends Thread {
     final static String host = "10.111.180.76";
     final static int port = 5346;
-    private static ServerSocket serverSocket;
-    private static Connections conn=null;
     static Socket socket;
+    static Vector<Connections> ar = new Vector<>();
+    private static ServerSocket serverSocket;
+    private static Connections conn = null;
 
     // Start server med host og port til et socket.
     public static void serverSetup() throws IOException {
-        // if (conn != null) return conn;
-
         if (conn == null) {
             InetAddress address = InetAddress.getByName(host);
             serverSocket = new ServerSocket(port, 100, address);
@@ -37,17 +37,20 @@ public class Server extends Thread {
                 System.out.println("0");
                 ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
                 System.out.println("0");
-               // ObjectInputStream objectInputStream = new ObjectInputStream(socket.getInputStream());
+                ObjectInputStream objectInputStream = new ObjectInputStream(socket.getInputStream());
                 System.out.println("1");
-              //  conn.setServer(socket);
-              //  conn.setIn(inputStream);
-              //  conn.setOut(outputStream);
-               // conn.setObjIn(objectInputStream);
-               // conn.setObjOut(objectOutputStream);
+               // conn.setServer(socket);
+               // conn.setIn(inputStream);
+                //conn.setOut(outputStream);
+                //conn.setObjIn(objectInputStream);
+                //conn.setObjOut(objectOutputStream);
                 outputStream.writeUTF("test1");
                 System.out.println("2");
-               // Thread t = new Connections(socket, outputStream, inputStream, objectOutputStream, objectInputStream);
-                Thread t = new Connections(socket, inputStream,outputStream , objectOutputStream);
+                Connections clientT = new Connections(socket, outputStream, inputStream, objectOutputStream, objectInputStream);
+                // Connections clientT = new Connections(socket, inputStream,outputStream , objectOutputStream);
+                Thread t = new Thread(clientT);
+                ar.add(clientT);
+                System.out.println(ar.size() + 1 + " client(s) is connected");
                 t.start();
             } catch (Exception E) {
                 assert socket != null;
