@@ -9,8 +9,8 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Vector;
 
-public class Server extends Thread {
-    final static String host = "10.111.180.76";
+public class Server  {
+    final static String host = "192.168.1.6";
     final static int port = 5346;
     static Socket socket;
     static Vector<Connections> ar = new Vector<>();
@@ -30,23 +30,15 @@ public class Server extends Thread {
             try {
                 socket = serverSocket.accept();
                 System.out.println("accepted");
-
-                DataInputStream inputStream = new DataInputStream(socket.getInputStream());
+               // DataInputStream inputStream = new DataInputStream(socket.getInputStream());
                 System.out.println("0");
-                DataOutputStream outputStream = new DataOutputStream(socket.getOutputStream());
-                System.out.println("0");
-                ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
+             //   DataOutputStream outputStream = new DataOutputStream(socket.getOutputStream());
                 System.out.println("0");
                 ObjectInputStream objectInputStream = new ObjectInputStream(socket.getInputStream());
-                System.out.println("1");
-               // conn.setServer(socket);
-               // conn.setIn(inputStream);
-                //conn.setOut(outputStream);
-                //conn.setObjIn(objectInputStream);
-                //conn.setObjOut(objectOutputStream);
-                outputStream.writeUTF("test1");
+                ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
                 System.out.println("2");
-                Connections clientT = new Connections(socket, outputStream, inputStream, objectOutputStream, objectInputStream);
+                Connections clientT = new Connections(socket, objectOutputStream, objectInputStream);
+               // Connections clientT = new Connections(socket, outputStream, inputStream, objectOutputStream, objectInputStream);
                 // Connections clientT = new Connections(socket, inputStream,outputStream , objectOutputStream);
                 Thread t = new Thread(clientT);
                 ar.add(clientT);

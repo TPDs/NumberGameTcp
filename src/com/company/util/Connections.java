@@ -21,6 +21,12 @@ public class Connections implements Runnable {
     ObjectInputStream objIn;
     Game game;
 
+    public Connections(Socket server, ObjectOutputStream objOut, ObjectInputStream objIn) throws IOException {
+        this.server = server;
+        this.objOut = objOut;
+        this.objIn = objIn;
+    }
+
     public Connections(Socket server, DataOutputStream out, DataInputStream in, ObjectOutputStream objOut,
                        ObjectInputStream objIn) throws IOException {
         this.server = server;
