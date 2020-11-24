@@ -36,7 +36,7 @@ public class Server  {
                 System.out.println("0");
                 ObjectInputStream objectInputStream = new ObjectInputStream(socket.getInputStream());
                 ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
-                System.out.println("2");
+                System.out.println("22");
                 Connections clientT = new Connections(socket, objectOutputStream, objectInputStream);
                // Connections clientT = new Connections(socket, outputStream, inputStream, objectOutputStream, objectInputStream);
                 // Connections clientT = new Connections(socket, inputStream,outputStream , objectOutputStream);
