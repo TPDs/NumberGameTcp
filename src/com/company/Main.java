@@ -1,6 +1,7 @@
 package com.company;
 
 import java.io.IOException;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class Main {
@@ -8,7 +9,7 @@ public class Main {
     public static final String ANSI_RED = "\u001B[31m";
     public static final String ANSI_YELLOW = "\u001B[33m";
 
-    public static void main(String[] args) throws IOException, ClassNotFoundException {
+    public static void main(String[] args) throws IOException, ClassNotFoundException, InterruptedException, NoSuchElementException {
 
         Game game = new Game();
         System.out.println("\n" + ANSI_YELLOW +

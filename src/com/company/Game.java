@@ -3,8 +3,7 @@ package com.company;
 import com.company.util.Client;
 import com.company.util.Server;
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
+import java.io.*;
 import java.net.Socket;
 import java.util.Scanner;
 
@@ -19,7 +18,7 @@ public class Game {
     }
 
     //Metode for at joine et game
-    public void joinGame() throws IOException, ClassNotFoundException {
+    public void joinGame() throws IOException, ClassNotFoundException, InterruptedException {
         Client player2 = new Client();
         String name;
         Scanner scanner = new Scanner(System.in);
@@ -53,12 +52,19 @@ public class Game {
         return game;
     }
 
-    public void clientRound(Socket client) throws IOException, ClassNotFoundException {
+    public void clientRound(Socket client) throws IOException, ClassNotFoundException, InterruptedException {
+        /*DataOutputStream out = new DataOutputStream(client.getOutputStream());
+        out.writeUTF("Hej");*/
+
+        System.out.println("0");
         ObjectInputStream objIn = new ObjectInputStream(client.getInputStream());
+        System.out.println("1");
         Battle battlegame = (Battle) objIn.readObject(); //Skal sendes fra server!
+        System.out.println("2");
         int clientRoll=0;
 
         Scanner scanner = new Scanner(System.in);
+
         while (battlegame.getPlayer().getScore() < 100 && battlegame.getServer().getScore() < 100) {
             System.out.println("Please make your roll..\n\n");
             System.out.println("Press 1 to roll");
