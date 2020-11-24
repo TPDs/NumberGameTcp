@@ -9,12 +9,57 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 public class Server extends Thread {
-    private static ServerSocket serverSocket;
-    // final static String host = "5.103.132.221";
-    final static String host = "192.168.1.6";
-
+    final static String host = "10.111.180.76";
     final static int port = 5346;
-    private static Connections conn;
+    private static ServerSocket serverSocket;
+    private static Connections conn=null;
+    static Socket socket;
+
+    // Start server med host og port til et socket.
+    public static void serverSetup() throws IOException {
+        // if (conn != null) return conn;
+
+        if (conn == null) {
+            InetAddress address = InetAddress.getByName(host);
+            serverSocket = new ServerSocket(port, 100, address);
+        }
+
+        while (true) {
+            System.out.println("0");
+            socket = null;
+            try {
+                socket = serverSocket.accept();
+                System.out.println("accepted");
+
+                DataInputStream inputStream = new DataInputStream(socket.getInputStream());
+                System.out.println("0");
+                DataOutputStream outputStream = new DataOutputStream(socket.getOutputStream());
+                System.out.println("0");
+                ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
+                System.out.println("0");
+               // ObjectInputStream objectInputStream = new ObjectInputStream(socket.getInputStream());
+                System.out.println("1");
+              //  conn.setServer(socket);
+              //  conn.setIn(inputStream);
+              //  conn.setOut(outputStream);
+               // conn.setObjIn(objectInputStream);
+               // conn.setObjOut(objectOutputStream);
+                outputStream.writeUTF("test1");
+                System.out.println("2");
+               // Thread t = new Connections(socket, outputStream, inputStream, objectOutputStream, objectInputStream);
+                Thread t = new Connections(socket, inputStream,outputStream , objectOutputStream);
+                t.start();
+            } catch (Exception E) {
+                assert socket != null;
+                socket.close();
+                System.out.println("Connection closed..");
+            }
+
+
+        }
+
+
+    }
 
     public Battle server(User user) throws IOException {
 
@@ -45,40 +90,5 @@ public class Server extends Thread {
         server.close();
         return game;
     }
-
-    // Start server med host og port til et socket.
-    public static void serverSetup() throws IOException {
-        // if (conn != null) return conn;
-
-        if (conn == null) {
-            InetAddress address = InetAddress.getByName(host);
-            serverSocket = new ServerSocket(port, 100, address);
-        }
-
-        while (true) {
-
-            Socket socket = null;
-            try {
-                socket = serverSocket.accept();
-                DataInputStream inputStream = new DataInputStream(socket.getInputStream());
-                DataOutputStream outputStream = new DataOutputStream(socket.getOutputStream());
-                ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
-                ObjectInputStream objectInputStream = new ObjectInputStream(socket.getInputStream());
-                conn.setServer(socket);
-                conn.setIn(inputStream);
-                conn.setOut(outputStream);
-                conn.setObjIn(objectInputStream);
-                conn.setObjOut(objectOutputStream);
-                Thread t = new Connections(socket, outputStream, inputStream, objectOutputStream, objectInputStream);
-                t.start();
-            } catch (Exception E) {
-                assert socket != null;
-                socket.close();
-            }
-
-
-        }
-
-
-    }}
+}
 

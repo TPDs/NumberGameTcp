@@ -26,8 +26,6 @@ public class Client {
         out.writeUTF(name);
         Game game = new Game();
         game.clientRound(conn);
-
-
     }
 
 }

@@ -30,6 +30,13 @@ public class Connections extends Thread {
         this.objOut = objOut;
     }
 
+    public Connections(Socket server, DataInputStream in, DataOutputStream out, ObjectOutputStream objOut) throws IOException {
+        this.server = server;
+        this.in = in;
+        this.out = out;
+        this.objOut = objOut;
+    }
+
     @Override
     public void run() {
         System.out.println("Thread made");
