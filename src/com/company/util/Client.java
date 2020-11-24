@@ -24,8 +24,6 @@ public class Client {
         DataInputStream in = new DataInputStream(conn.getInputStream());
         out.writeUTF(name);
         game.clientRound(conn);
-
-
     }
 
 }
